@@ -22,6 +22,7 @@ module.exports = {
       templateContent: ({htmlWebpackPlugin}) => `
         <html>
           <head>
+            <link rel="stylesheet" href="https://unpkg.com/@shopify/polaris@11.2.2/build/esm/styles.css" />
             ${htmlWebpackPlugin.tags.headTags}
           </head>
           <body>

@@ -1,31 +1,43 @@
 import React, {useState} from 'react';
-import {BrowserRouter, Link, Routes, Route} from 'react-router-dom';
-import translations from "./translations";
+import {RouterProvider, Link as ReactRouterLink, createBrowserRouter} from 'react-router-dom';
+import enTranslations from '@shopify/polaris/locales/en.json';
+import {AppProvider} from '@shopify/polaris';
+
+import {LocaleProvider} from './locale';
+import Frame from "./components/Frame";
 import Home from './pages/Home'
-import Cat from './pages/Cat'
-import Dog from './pages/Dog'
+import Orders from './pages/Orders'
+import Products from './pages/Products'
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <AppProvider i18n={enTranslations} linkComponent={Link}><Frame /></AppProvider>,
+    children: [
+      {
+        path: '/',
+        element: <Home />,
+      },
+      {
+        path: '/orders',
+        element: <Orders />,
+      },
+      {
+        path: '/products',
+        element: <Products />,
+      },
+    ]
+  },
+]);
+
+function Link({ref, url, ...rest}) {
+  return <ReactRouterLink to={url} {...rest} />;
+}
 
 export default function App() {
-  const [locale, setLocale] = useState('en');
   return (
-    <BrowserRouter>
-      <span>Locale:</span>
-      <button onClick={() => setLocale('en')} disabled={locale === 'en'}>English</button>
-      <button onClick={() => setLocale('fr')} disabled={locale === 'fr'}>French</button>
-
-      <h1>{translations[locale].greeting}</h1>
-
-      <ul>
-        <li><Link to="/">🏠</Link></li>
-        <li><Link to="/cat">🐱</Link></li>
-        <li><Link to="/dog">🐶</Link></li>
-      </ul>
-
-      <Routes>
-        <Route path="/" element={<Home locale={locale} />} />
-        <Route path="/cat" element={<Cat locale={locale} />} />
-        <Route path="/dog" element={<Dog locale={locale} />} />
-      </Routes>
-    </BrowserRouter>
+    <LocaleProvider>
+      <RouterProvider router={router} />
+    </LocaleProvider>
   );
 }
