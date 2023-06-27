@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const API_DELAY = 1000;
+const LOCALE_DELAY = 1000;
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -45,25 +46,25 @@ module.exports = {
         const locale = request.query.locale || 'en';
         const contents = require(`./src/pages/Home/translations/${locale}.json`);
         response.status = 200;
-        return sleep(1000).then(() => response.json(contents));
+        return sleep(LOCALE_DELAY).then(() => response.json(contents));
       });
       devServer.app.get('/locales/products', (request, response) => {
         const locale = request.query.locale || 'en';
         const contents = require(`./src/pages/products/translations/${locale}.json`);
         response.status = 200;
-        return sleep(1000).then(() => response.json(contents));
+        return sleep(LOCALE_DELAY).then(() => response.json(contents));
       });
       devServer.app.get('/locales/orders', (request, response) => {
         const locale = request.query.locale || 'en';
         const contents = require(`./src/pages/orders/translations/${locale}.json`);
         response.status = 200;
-        return sleep(1000).then(() => response.json(contents));
+        return sleep(LOCALE_DELAY).then(() => response.json(contents));
       });
       devServer.app.get('/locales/root', (request, response) => {
         const locale = request.query.locale || 'en';
         const contents = require(`./src/components/Navigation/translations/${locale}.json`);
         response.status = 200;
-        return sleep(1000).then(() => response.json(contents));
+        return sleep(LOCALE_DELAY).then(() => response.json(contents));
       });
 
       devServer.app.get('/api/home', (_, response) => {
