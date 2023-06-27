@@ -16,13 +16,18 @@ function generateConfig(locale) {
       path: path.resolve(__dirname, 'dist', locale),
     },
     resolve: { 
-      alias: {
-        '__translations': `./translations/${locale}.json`,
-      },
       extensions: [".js", ".jsx"] 
     },
     module: {
       rules: [
+        {
+          test: /translations\/.*\.json/,
+          exclude: /node_modules/,
+          use: {
+            loader: require.resolve('./empty-json-loader'),
+            options: { locale },
+          },
+        },
         {
           test: /\.jsx?$/,
           exclude: /node_modules/,
