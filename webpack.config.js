@@ -28,11 +28,9 @@ module.exports = {
           <head>
             <meta name="google" value="notranslate" />
             <link rel="stylesheet" href="https://unpkg.com/@shopify/polaris@11.2.2/build/esm/styles.css" />
-            ${htmlWebpackPlugin.tags.headTags}
           </head>
           <body>
             <div id="root"></div>
-            ${htmlWebpackPlugin.tags.bodyTags}
           </body>
         </html>
       `
