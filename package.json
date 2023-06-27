@@ -5,6 +5,9 @@
   "repository": "https://github.com/ryanwilsonperkin/i18n-loading-comparison.git",
   "author": "Ryan Wilson-Perkin <ryanwilsonperkin@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "serve": "webpack serve --mode=development --port 8080"
+  },
   "devDependencies": {
     "@babel/core": "^7.22.5",
     "@babel/preset-env": "^7.22.5",
