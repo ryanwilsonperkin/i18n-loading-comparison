@@ -7,8 +7,8 @@ import {
   ProductsMinor,
 } from '@shopify/polaris-icons';
 
-import translations from '../translations';
-import { useLocale } from '../locale';
+import translations from './translations';
+import {useLocale} from '../../locale';
 
 export default function Navigation() {
   const location = useLocation();
