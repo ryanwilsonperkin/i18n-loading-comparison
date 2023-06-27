@@ -26,6 +26,7 @@ module.exports = {
       templateContent: ({htmlWebpackPlugin}) => `
         <html>
           <head>
+            <meta name="google" value="notranslate" />
             <link rel="stylesheet" href="https://unpkg.com/@shopify/polaris@11.2.2/build/esm/styles.css" />
             ${htmlWebpackPlugin.tags.headTags}
           </head>
