@@ -1,5 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const API_DELAY = 1000;
+
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -40,10 +42,10 @@ module.exports = {
     historyApiFallback: true,
     setupMiddlewares(middlewares, devServer) {
       devServer.app.get('/api/home', (_, response) => {
-        return sleep(1000).then(() => response.json({}));
+        return sleep(API_DELAY).then(() => response.json({}));
       });
       devServer.app.get('/api/orders', (_, response) => {
-        return sleep(1000).then(() => response.json({
+        return sleep(API_DELAY).then(() => response.json({
           orders: [
             {number: 101, price: 12.00},
             {number: 102, price: 23.57},
@@ -51,7 +53,7 @@ module.exports = {
         }));
       });
       devServer.app.get('/api/products', (_, response) => {
-        return sleep(1000).then(() => response.json({
+        return sleep(API_DELAY).then(() => response.json({
           products: [
             {name: 'Widget', inventory: 5},
             {name: 'Fidget', inventory: 55},
