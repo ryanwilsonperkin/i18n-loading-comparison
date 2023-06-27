@@ -41,6 +41,31 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     setupMiddlewares(middlewares, devServer) {
+      devServer.app.get('/locales/home', (request, response) => {
+        const locale = request.query.locale || 'en';
+        const contents = require(`./src/pages/Home/translations/${locale}.json`);
+        response.status = 200;
+        return sleep(1000).then(() => response.json(contents));
+      });
+      devServer.app.get('/locales/products', (request, response) => {
+        const locale = request.query.locale || 'en';
+        const contents = require(`./src/pages/products/translations/${locale}.json`);
+        response.status = 200;
+        return sleep(1000).then(() => response.json(contents));
+      });
+      devServer.app.get('/locales/orders', (request, response) => {
+        const locale = request.query.locale || 'en';
+        const contents = require(`./src/pages/orders/translations/${locale}.json`);
+        response.status = 200;
+        return sleep(1000).then(() => response.json(contents));
+      });
+      devServer.app.get('/locales/root', (request, response) => {
+        const locale = request.query.locale || 'en';
+        const contents = require(`./src/components/Navigation/translations/${locale}.json`);
+        response.status = 200;
+        return sleep(1000).then(() => response.json(contents));
+      });
+
       devServer.app.get('/api/home', (_, response) => {
         return sleep(API_DELAY).then(() => response.json({}));
       });

@@ -1,5 +1,5 @@
 import React from 'react';
-import {useLocation} from 'react-router-dom';
+import {useRouteLoaderData, useLocation} from 'react-router-dom';
 import {Navigation as PolarisNavigation} from '@shopify/polaris';
 import {
   HomeMinor,
@@ -7,12 +7,9 @@ import {
   ProductsMinor,
 } from '@shopify/polaris-icons';
 
-import translations from './translations';
-import {useLocale} from '../../locale';
-
 export default function Navigation() {
+  const translations = useRouteLoaderData('root');
   const location = useLocation();
-  const {locale} = useLocale();
 
   return (
     <PolarisNavigation location={location.pathname}>
@@ -21,18 +18,18 @@ export default function Navigation() {
           {
             url: '/',
             exactMatch: true,
-            label: translations[locale].navigation.home,
+            label: translations.navigation.home,
             icon: HomeMinor,
           },
           {
             url: '/orders',
-            label: translations[locale].navigation.orders,
+            label: translations.navigation.orders,
             icon: OrdersMinor,
           },
           {
             url: '/products',
             exactMatch: true,
-            label: translations[locale].navigation.products,
+            label: translations.navigation.products,
             icon: ProductsMinor,
           },
         ]}
