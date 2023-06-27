@@ -6,7 +6,10 @@
   "author": "Ryan Wilson-Perkin <ryanwilsonperkin@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "serve": "webpack serve --mode=development --port 8080"
+    "serve-proxy": "webpack serve --config-name=proxy --mode=development --port 8080",
+    "serve-en": "webpack serve --config-name=en --mode=development --port 8081",
+    "serve-fr": "webpack serve --config-name=fr --mode=development --port 8082",
+    "serve": "npm-run-all --parallel serve-proxy serve-en serve-fr"
   },
   "devDependencies": {
     "@babel/core": "^7.22.5",
@@ -14,6 +17,7 @@
     "@babel/preset-react": "^7.22.5",
     "babel-loader": "^9.1.2",
     "html-webpack-plugin": "^5.5.3",
+    "npm-run-all": "^4.1.5",
     "react-router-dom": "^6.14.0",
     "webpack": "^5.88.0",
     "webpack-cli": "^5.1.4",

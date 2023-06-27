@@ -7,12 +7,10 @@ import {
   ProductsMinor,
 } from '@shopify/polaris-icons';
 
-import translations from './translations';
-import {useLocale} from '../../locale';
+import translations from '__translations';
 
 export default function Navigation() {
   const location = useLocation();
-  const {locale} = useLocale();
 
   return (
     <PolarisNavigation location={location.pathname}>
@@ -21,18 +19,18 @@ export default function Navigation() {
           {
             url: '/',
             exactMatch: true,
-            label: translations[locale].navigation.home,
+            label: translations.navigation.home,
             icon: HomeMinor,
           },
           {
             url: '/orders',
-            label: translations[locale].navigation.orders,
+            label: translations.navigation.orders,
             icon: OrdersMinor,
           },
           {
             url: '/products',
             exactMatch: true,
-            label: translations[locale].navigation.products,
+            label: translations.navigation.products,
             icon: ProductsMinor,
           },
         ]}
