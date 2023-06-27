@@ -12,6 +12,7 @@ function generateConfig(locale) {
     name: locale,
     entry: "./src/index.jsx",
     output: { 
+      filename: `[name].${locale}.js`,
       path: path.resolve(__dirname, 'dist', locale),
     },
     resolve: { 
