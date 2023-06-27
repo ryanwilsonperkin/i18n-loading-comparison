@@ -8,19 +8,6 @@ import {
   SkeletonDisplayText,
 } from '@shopify/polaris';
 
-const DELAY = 1000;
-
-export function useSimulatedDataLoading() {
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    const timeoutID = window.setTimeout(() => {
-      setLoading(false);
-    }, DELAY);
-    return () => window.clearTimeout(timeoutID);
-  });
-  return {loading};
-}
-
 export function Loading() {
   return (
     <SkeletonPage primaryAction>

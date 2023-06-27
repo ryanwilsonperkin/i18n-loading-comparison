@@ -1,13 +1,15 @@
 import React from 'react';
+import {useQuery} from '@tanstack/react-query';
+import {LegacyCard, Layout, Page, Text, VerticalStack} from '@shopify/polaris';
+
 import translations from './translations';
-import {Loading, useSimulatedDataLoading} from '../../loading';
+import {Loading} from '../../loading';
 import {useLocale} from '../../locale';
-import { LegacyCard, Layout, Page, Text, VerticalStack } from '@shopify/polaris';
 
 export default function Home() {
   const {locale} = useLocale();
-  const {loading} = useSimulatedDataLoading();
-  if (loading) return <Loading />;
+  const {isLoading} = useQuery({queryKey: ['home'], queryFn: () => fetch('/api/home')});
+  if (isLoading) return <Loading />;
 
   return (
     <Page>
