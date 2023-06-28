@@ -4,9 +4,14 @@ import {Page} from '@shopify/polaris';
 
 import translations from '__translations';
 import {Loading} from '../../loading';
+import { useSpeed } from '../../speed';
 
 export default function Products() {
-  const {data, isLoading} = useQuery({queryKey: ['products'], queryFn: () => fetch('/api/products').then(resp => resp.json())});
+  const {speed} = useSpeed();
+  const {data, isLoading} = useQuery({
+    queryKey: ['products'],
+    queryFn: () => fetch(`/api/products?speed=${speed}`).then(resp => resp.json()),
+  });
   if (isLoading) return <Loading />;
 
   return (

@@ -3,6 +3,7 @@ import {useLocation} from 'react-router-dom';
 import {Navigation as PolarisNavigation} from '@shopify/polaris';
 import {
   ArrowLeftMinor,
+  DigitalMediaReceiverMajor,
   GlobeMinor,
   HomeMinor,
   OrdersMinor,
@@ -11,9 +12,11 @@ import {
 
 import translations from '__translations';
 import { LOCALES, useLocale } from '../../locale';
+import { SPEEDS, useSpeed } from '../../speed';
 
 export default function Navigation() {
   const location = useLocation();
+  const {speed: activeSpeed, setSpeed} = useSpeed();
   const {locale: activeLocale, setLocale} = useLocale();
 
   return (
@@ -59,6 +62,19 @@ export default function Navigation() {
             window.location.reload();
           },
           icon: GlobeMinor,
+        }))}
+      />
+      <PolarisNavigation.Section
+        title="Simulated speed"
+        separator
+        items={SPEEDS.map(speed => ({
+          label: speed,
+          selected: speed === activeSpeed,
+          onClick: () => {
+            setSpeed(speed);
+            window.location.reload();
+          },
+          icon: DigitalMediaReceiverMajor,
         }))}
       />
     </PolarisNavigation>

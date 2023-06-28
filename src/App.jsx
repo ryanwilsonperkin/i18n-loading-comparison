@@ -4,6 +4,7 @@ import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import enTranslations from '@shopify/polaris/locales/en.json';
 import {AppProvider} from '@shopify/polaris';
 
+import {SpeedProvider} from './speed';
 import {LocaleProvider} from './locale';
 import Frame from "./components/Frame";
 import Home from './pages/Home'
@@ -46,9 +47,11 @@ function Link({ref, url, ...rest}) {
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <LocaleProvider>
-        <RouterProvider router={router} />
-      </LocaleProvider>
+      <SpeedProvider>
+        <LocaleProvider>
+          <RouterProvider router={router} />
+        </LocaleProvider>
+      </SpeedProvider>
     </QueryClientProvider>
   );
 }

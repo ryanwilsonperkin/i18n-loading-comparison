@@ -9,6 +9,19 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+function getDelay(request) {
+  const speed = request.cookies.speed || request.query.speed || 'average';
+  switch (speed) {
+    case 'slow':
+      return 2000;
+    case 'fast':
+      return 200;
+    case 'average':
+    default:
+      return 1000;
+  }
+}
+
 app.use(cookieParser());
 app.use(express.static('dist'));
 
@@ -25,6 +38,11 @@ app.get('/', (req, res) => {
   `);
 });
 
+app.use(async (req, res, next) => {
+  await sleep(getDelay(req));
+  next();
+});
+
 app.get('/current-approach/:page?', (req, res) => {
   const locale = req.cookies.locale || 'en';
   const localeSpecificIndexfile = path.join(__dirname, 'dist', 'current-approach', locale, 'index.html');
@@ -33,12 +51,10 @@ app.get('/current-approach/:page?', (req, res) => {
 
 // API ROUTES
 app.get('/api/home', async (req, res) => {
-  await sleep(1000);
   res.json({});
 });
 
 app.get('/api/products', async (req, res) => {
-  await sleep(1000);
   res.json({
     products: [
       {name: 'Widget', inventory: 5},
@@ -48,7 +64,6 @@ app.get('/api/products', async (req, res) => {
 });
 
 app.get('/api/orders', async (req, res) => {
-  await sleep(1000);
   res.json({
     orders: [
       {number: 101, price: 12.00},
