@@ -44,7 +44,6 @@ function Link({ref, url, ...rest}) {
 }
 
 export default function App() {
-  console.log("RENDERED APP")
   return (
     <QueryClientProvider client={queryClient}>
       <LocaleProvider>
