@@ -82,6 +82,21 @@ function treeShakeLocalesApproachConfig(locale) {
   return config;
 }
 
+function dataLoaderLocalesApproachConfig() {
+  const config = baseConfig();
+  config.entry = "./src/data-loader-locales-approach/index.jsx";
+  config.output = {
+    filename: `[name].js`,
+    chunkFilename: `[name].js`,
+    publicPath: `/data-loader-locales-approach/`,
+    path: path.resolve(__dirname, 'dist', 'data-loader-locales-approach'),
+  };
+  config.plugins.push(new DefinePlugin({
+    'PATH_BASENAME': JSON.stringify('/data-loader-locales-approach'),
+  }));
+  return config;
+}
+
 function idealApproachConfig() {
   const config = baseConfig();
   config.entry = "./src/ideal-approach/index.jsx";
@@ -102,5 +117,6 @@ module.exports = [
  currentApproachConfig('fr'),
  treeShakeLocalesApproachConfig('en'),
  treeShakeLocalesApproachConfig('fr'),
+ dataLoaderLocalesApproachConfig(),
  idealApproachConfig(),
 ];

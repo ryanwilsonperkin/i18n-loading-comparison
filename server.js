@@ -33,6 +33,7 @@ app.get('/', (req, res) => {
         <ul>
           <li><a href="/current-approach/">Current approach</a></li>
           <li><a href="/tree-shake-locales-approach/">Tree-shake locales approach</a></li>
+          <li><a href="/data-loader-locales-approach/">Data-loader locales approach</a></li>
           <li><a href="/ideal-approach/">Ideal approach</a></li>
         </ul>
       </body>
@@ -55,6 +56,11 @@ app.get('/tree-shake-locales-approach/:page?', (req, res) => {
   const locale = req.cookies.locale || 'en';
   const localeSpecificIndexfile = path.join(__dirname, 'dist', 'tree-shake-locales-approach', locale, 'index.html');
   res.sendFile(localeSpecificIndexfile);
+});
+
+app.get('/data-loader-locales-approach/:page?', (req, res) => {
+  const indexFile = path.join(__dirname, 'dist', 'data-loader-locales-approach', 'index.html');
+  res.sendFile(indexFile);
 });
 
 app.get('/ideal-approach/:page?', (req, res) => {
