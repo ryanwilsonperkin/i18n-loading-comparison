@@ -85,63 +85,71 @@ app.get('/api/orders', async (req, res) => {
   });
 });
 
+// LOCALE ROUTES
 app.get('/locales/navigation', async (req, res) => {
   const locale = req.query.locale || 'en';
-  const localeFile = require(`./src/ideal-approach/components/Navigation/translations/${locale}.json`);
-  res.json(localeFile);
+  const data = {
+    "en": {
+      "navigation": {
+        "home": "Home",
+        "orders": "Orders",
+        "products": "Products"
+      }
+    },
+    "fr": {
+      "navigation": {
+        "home": "Accueil",
+        "orders": "Commandes",
+        "products": "Produits"
+      }
+    },
+  };
+  res.json(data[locale]);
 });
 
 app.get('/locales/home', async (req, res) => {
   const locale = req.query.locale || 'en';
-  const localeFile = require(`./src/ideal-approach/pages/Home/translations/${locale}.json`);
-  res.json(localeFile);
+  const data = {
+    "en": {
+      "greeting": "Here's what's happening with your store today",
+      "noActivityTitle": "No store activity",
+      "noActivityContent": "Your sales, orders, and sessions will show here."
+    },
+    "fr": {
+      "greeting": "Statut de votre boutique aujourd'hui",
+      "noActivityTitle": "Aucune activité dans la boutique",
+      "noActivityContent": "Vos ventes, commandes et sessions apparaîtront ici."
+    }
+  };
+  res.json(data[locale]);
 });
 
 app.get('/locales/products', async (req, res) => {
   const locale = req.query.locale || 'en';
-  const localeFile = require(`./src/ideal-approach/pages/Products/translations/${locale}.json`);
-  res.json(localeFile);
+  const data = {
+    "en": {
+      "title": "Products"
+    },
+    "fr": {
+      "title": "Produits"
+    },
+  };
+  res.json(data[locale]);
 });
 
 app.get('/locales/orders', async (req, res) => {
   const locale = req.query.locale || 'en';
-  const localeFile = require(`./src/ideal-approach/pages/Orders/translations/${locale}.json`);
-  res.json(localeFile);
+  const data = {
+    "en": {
+      "title": "Orders"
+    },
+    "fr": {
+      "title": "Commandes"
+    },
+  };
+  res.json(data[locale]);
 });
 
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`)
 })
-
-/*
-
-
-const API_DELAY = 1000;
-
-
-
-    historyApiFallback: true,
-    setupMiddlewares(middlewares, devServer) {
-      devServer.app.get('/api/home', (_, response) => {
-        return sleep(API_DELAY).then(() => response.json({}));
-      });
-      devServer.app.get('/api/orders', (_, response) => {
-        return sleep(API_DELAY).then(() => response.json({
-          orders: [
-            {number: 101, price: 12.00},
-            {number: 102, price: 23.57},
-          ]
-        }));
-      });
-      devServer.app.get('/api/products', (_, response) => {
-        return sleep(API_DELAY).then(() => response.json({
-          products: [
-            {name: 'Widget', inventory: 5},
-            {name: 'Fidget', inventory: 55},
-          ]
-        }));
-      });
-      return middlewares;
-    },
-  },
-*/
