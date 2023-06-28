@@ -1064,6 +1064,11 @@
   resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.7.0.tgz#550a8d5760b78efc5d60f62b5829b0f74c1fde81"
   integrity sha512-Eu1V3kz3mV0wUpVTiFHuaT8UD1gj/0VnoFHQYX35xlslQUpe8CuYoKFn9d4WZFHm3yDywz6ALZuGdnUPKrNeAw==
 
+"@shopify/async@^4.0.3":
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/@shopify/async/-/async-4.0.3.tgz#c858df7aa6c42e79138d826d01f30b14ddf1a33b"
+  integrity sha512-zg5IjXnOCAPJuhoaPKIwu9MNvAdNT/vTShOqyw65vLj+Mzdaw71Em23l+hR3IN7BPERnXywIUyQc4CEV857SFg==
+
 "@shopify/polaris-icons@^7.1.0":
   version "7.1.0"
   resolved "https://registry.yarnpkg.com/@shopify/polaris-icons/-/polaris-icons-7.1.0.tgz#0e69ba27cfc343efa3b2db4dc4b20028209dcc3d"
@@ -1086,6 +1091,54 @@
     "@types/react-transition-group" "^4.4.2"
     react-fast-compare "^3.2.0"
     react-transition-group "^4.4.2"
+
+"@shopify/react-async@^5.2.3":
+  version "5.2.3"
+  resolved "https://registry.yarnpkg.com/@shopify/react-async/-/react-async-5.2.3.tgz#4269cd2101d58c6f000971bd3f9a331f1c694c1f"
+  integrity sha512-BRrT1Ptvk6Cdpdmp2PZk+6EitkUvFK71Rve7J5OEzCHzQ8aBEvFy3qPVPXt9psDx7ZUipBlkoeCdmDQgSyhRuA==
+  dependencies:
+    "@shopify/async" "^4.0.3"
+    "@shopify/react-effect" "^5.0.3"
+    "@shopify/react-hooks" "^3.0.5"
+    "@shopify/react-hydrate" "^3.0.10"
+    "@shopify/react-idle" "^3.1.2"
+    "@shopify/react-intersection-observer" "^4.0.4"
+    "@shopify/useful-types" "^5.1.2"
+
+"@shopify/react-effect@^5.0.3":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@shopify/react-effect/-/react-effect-5.0.3.tgz#9bbf53a03a06a955ac54a86c8403ea4e3067fc8e"
+  integrity sha512-xBOzxApzO/KNo1xbdodWNFbRvsCymnnjLiZr3KehOgqp/aSb7fMJw5o6COeo9v2k4phoUlbWXye+JJuEOB8DTA==
+
+"@shopify/react-hooks@^3.0.5":
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/@shopify/react-hooks/-/react-hooks-3.0.5.tgz#d2103ecc60f111185b3f61a057893b4cd1841d9f"
+  integrity sha512-FzTkzFELTkfU0ErcURY2eAPRwFP3MkyeAl09STIbvfNLkNcFIG9i3869KAdFrSwRsR7WZ3PdWkWFcLAuRJPvpg==
+
+"@shopify/react-hydrate@^3.0.10":
+  version "3.0.10"
+  resolved "https://registry.yarnpkg.com/@shopify/react-hydrate/-/react-hydrate-3.0.10.tgz#82cc8a7b67007f51641255d8b49521feb1be6995"
+  integrity sha512-tXhi0G0sI+Qsvf/hfEFZtqjgwO6U15B4cCbjBQRRKwdTtOyZm9J+fs/tSXJ1cgZTg2pA7dSGAT82sDgIEt0VVg==
+  dependencies:
+    "@shopify/react-effect" "^5.0.3"
+    "@shopify/react-hooks" "^3.0.5"
+
+"@shopify/react-idle@^3.1.2":
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/@shopify/react-idle/-/react-idle-3.1.2.tgz#77df456aec0521bc6c4f0abd1eccc1e9cf496d1e"
+  integrity sha512-S1bJtU1ZZ2wLBw0X0BJdVLfZXOlDJLBZnpEpwdcmKBQdWXq2r0ldQJgYmmZJPl6KwOM0VjoNmc9G7wE3PXH7Gw==
+  dependencies:
+    "@shopify/async" "^4.0.3"
+
+"@shopify/react-intersection-observer@^4.0.4":
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/@shopify/react-intersection-observer/-/react-intersection-observer-4.0.4.tgz#cdcf889e8ec2fdd6843abefbed1cb9ee523a736b"
+  integrity sha512-n+NSC3sUsbKQN5jj1b+UeQPG1zPOtsJ5sSFXN7/heLSHtt2mGsYDmeQ3ojjpvkFOuDGz1ZmKGvUFNEJLEWlV+w==
+
+"@shopify/useful-types@^5.1.2":
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/@shopify/useful-types/-/useful-types-5.1.2.tgz#da8f2aaa8b3496705068b21deb76091cc58fcdc4"
+  integrity sha512-EjwIljAYHT1pfIxdMFp6ytJvCUmKXa5NWsvG7zXFX5EnLs7wYp66M/QCuoyJjI0Lq+5ZVyrJXJqqeBiXQVVs0w==
 
 "@tanstack/query-core@4.29.19":
   version "4.29.19"
