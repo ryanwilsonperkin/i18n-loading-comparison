@@ -37,13 +37,14 @@ const router = createBrowserRouter([
       },
     ]
   },
-]);
+], {basename: PATH_BASENAME});
 
 function Link({ref, url, ...rest}) {
   return <ReactRouterLink to={url} {...rest} />;
 }
 
 export default function App() {
+  console.log("RENDERED APP")
   return (
     <QueryClientProvider client={queryClient}>
       <LocaleProvider>

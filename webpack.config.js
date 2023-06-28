@@ -1,66 +1,58 @@
+const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { DefinePlugin } = require('webpack');
 
-const API_DELAY = 1000;
-
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
-module.exports = {
-  entry: "./src/index.jsx",
-  resolve: { extensions: [".js", ".jsx"] },
-  module: {
-    rules: [
-      {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: ["@babel/preset-env", "@babel/preset-react"],
+function currentApproachConfig(locale) {
+  return {
+    entry: "./src/index.jsx",
+    output: {
+      filename: `[name].${locale}.js`,
+      chunkFilename: `[name].${locale}.js`,
+      publicPath: `/current-approach/${locale}/`,
+      path: path.resolve(__dirname, 'dist', 'current-approach', locale),
+    },
+    resolve: { 
+      alias: {
+        '__translations': `./translations/${locale}.json`,
+      },
+      extensions: [".js", ".jsx"],
+    },
+    module: {
+      rules: [
+        {
+          test: /\.jsx?$/,
+          exclude: /node_modules/,
+          use: {
+            loader: "babel-loader",
+            options: {
+              presets: ["@babel/preset-env", "@babel/preset-react"],
+            },
           },
         },
-      },
-    ],
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      templateContent: ({htmlWebpackPlugin}) => `
-        <html>
-          <head>
-            <meta name="google" value="notranslate" />
-            <link rel="stylesheet" href="https://unpkg.com/@shopify/polaris@11.2.2/build/esm/styles.css" />
-          </head>
-          <body>
-            <div id="root"></div>
-          </body>
-        </html>
-      `
-    }),
-  ],
-  devServer: {
-    historyApiFallback: true,
-    setupMiddlewares(middlewares, devServer) {
-      devServer.app.get('/api/home', (_, response) => {
-        return sleep(API_DELAY).then(() => response.json({}));
-      });
-      devServer.app.get('/api/orders', (_, response) => {
-        return sleep(API_DELAY).then(() => response.json({
-          orders: [
-            {number: 101, price: 12.00},
-            {number: 102, price: 23.57},
-          ]
-        }));
-      });
-      devServer.app.get('/api/products', (_, response) => {
-        return sleep(API_DELAY).then(() => response.json({
-          products: [
-            {name: 'Widget', inventory: 5},
-            {name: 'Fidget', inventory: 55},
-          ]
-        }));
-      });
-      return middlewares;
+      ],
     },
-  },
-};
+    plugins: [
+      new DefinePlugin({
+        'PATH_BASENAME': JSON.stringify('/current-approach'),
+      }),
+      new HtmlWebpackPlugin({
+        templateContent: `
+          <html>
+            <head>
+              <meta name="google" value="notranslate" />
+              <link rel="stylesheet" href="https://unpkg.com/@shopify/polaris@11.2.2/build/esm/styles.css" />
+            </head>
+            <body>
+              <div id="root"></div>
+            </body>
+          </html>
+        `
+      }),
+    ],
+  };
+}
+
+module.exports = [
+ currentApproachConfig('en'),
+ currentApproachConfig('fr'),
+];

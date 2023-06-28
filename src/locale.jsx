@@ -8,7 +8,7 @@ export function LocaleProvider({children}) {
   const [cookies, setCookie] = useCookies(['locale']);
   const locale = cookies.locale ?? 'en';
   const setLocale = useCallback((newLocale) => {
-    setCookie('locale', newLocale)
+    setCookie('locale', newLocale);
     window.location.reload();
   }, [setCookie]);
   return <LocaleContext.Provider value={{locale, setLocale}}>{children}</LocaleContext.Provider>;

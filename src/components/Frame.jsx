@@ -14,8 +14,7 @@ export default function Frame() {
       'https://cdn.shopify.com/shopifycloud/web/assets/v1/1306acdcab5e0df9.svg',
     contextualSaveBarSource:
       'https://cdn.shopify.com/shopifycloud/web/assets/v1/1306acdcab5e0df9.svg',
-    url: '#',
-    accessibilityLabel: 'Jaded Pixel',
+    url: '/',
   };
 
   return (
