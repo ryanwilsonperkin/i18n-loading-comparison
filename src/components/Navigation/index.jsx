@@ -2,6 +2,7 @@ import React from 'react';
 import {useLocation} from 'react-router-dom';
 import {Navigation as PolarisNavigation} from '@shopify/polaris';
 import {
+  ArrowLeftMinor,
   HomeMinor,
   OrdersMinor,
   ProductsMinor,
@@ -14,6 +15,15 @@ export default function Navigation() {
 
   return (
     <PolarisNavigation location={location.pathname}>
+      <PolarisNavigation.Section
+        items={[
+          {
+            label: 'Back to choices',
+            onClick: () => window.location = '/',
+            icon: ArrowLeftMinor,
+          },
+        ]}
+      />
       <PolarisNavigation.Section
         items={[
           {
