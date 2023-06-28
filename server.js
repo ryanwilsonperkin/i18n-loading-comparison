@@ -32,6 +32,7 @@ app.get('/', (req, res) => {
       <body>
         <ul>
           <li><a href="/current-approach/">Current approach</a></li>
+          <li><a href="/ideal-approach/">Ideal approach</a></li>
         </ul>
       </body>
     </html>
@@ -47,6 +48,11 @@ app.get('/current-approach/:page?', (req, res) => {
   const locale = req.cookies.locale || 'en';
   const localeSpecificIndexfile = path.join(__dirname, 'dist', 'current-approach', locale, 'index.html');
   res.sendFile(localeSpecificIndexfile);
+});
+
+app.get('/ideal-approach/:page?', (req, res) => {
+  const indexFile = path.join(__dirname, 'dist', 'ideal-approach', 'index.html');
+  res.sendFile(indexFile);
 });
 
 // API ROUTES
@@ -70,6 +76,30 @@ app.get('/api/orders', async (req, res) => {
       {number: 102, price: 23.57},
     ]
   });
+});
+
+app.get('/locales/navigation', async (req, res) => {
+  const locale = req.query.locale || 'en';
+  const localeFile = require(`./src/ideal-approach/components/Navigation/translations/${locale}.json`);
+  res.json(localeFile);
+});
+
+app.get('/locales/home', async (req, res) => {
+  const locale = req.query.locale || 'en';
+  const localeFile = require(`./src/ideal-approach/pages/Home/translations/${locale}.json`);
+  res.json(localeFile);
+});
+
+app.get('/locales/products', async (req, res) => {
+  const locale = req.query.locale || 'en';
+  const localeFile = require(`./src/ideal-approach/pages/Products/translations/${locale}.json`);
+  res.json(localeFile);
+});
+
+app.get('/locales/orders', async (req, res) => {
+  const locale = req.query.locale || 'en';
+  const localeFile = require(`./src/ideal-approach/pages/Orders/translations/${locale}.json`);
+  res.json(localeFile);
 });
 
 app.listen(port, () => {
