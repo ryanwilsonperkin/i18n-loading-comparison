@@ -57,6 +57,31 @@ function currentApproachConfig(locale) {
   return config;
 }
 
+function treeShakeLocalesApproachConfig(locale) {
+  const config = baseConfig();
+  config.entry = "./src/tree-shake-locales-approach/index.jsx";
+  config.output = {
+    filename: `[name].${locale}.js`,
+    chunkFilename: `[name].${locale}.js`,
+    publicPath: `/tree-shake-locales-approach/${locale}/`,
+    path: path.resolve(__dirname, 'dist', 'tree-shake-locales-approach', locale),
+  };
+  config.plugins.push(new DefinePlugin({
+    'PATH_BASENAME': JSON.stringify('/tree-shake-locales-approach'),
+  }));
+  config.module.rules.push({
+    test: /translations\/.*\.json?$/,
+    exclude: /node_modules/,
+    use: {
+      loader: require.resolve('./empty-loader'),
+      options: {
+        activeLocale: locale,
+      },
+    },
+  })
+  return config;
+}
+
 function idealApproachConfig() {
   const config = baseConfig();
   config.entry = "./src/ideal-approach/index.jsx";
@@ -75,5 +100,7 @@ function idealApproachConfig() {
 module.exports = [
  currentApproachConfig('en'),
  currentApproachConfig('fr'),
+ treeShakeLocalesApproachConfig('en'),
+ treeShakeLocalesApproachConfig('fr'),
  idealApproachConfig(),
 ];
