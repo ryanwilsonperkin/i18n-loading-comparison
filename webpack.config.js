@@ -4,7 +4,7 @@ const { DefinePlugin } = require('webpack');
 
 function currentApproachConfig(locale) {
   return {
-    entry: "./src/index.jsx",
+    entry: "./src/current-approach/index.jsx",
     output: {
       filename: `[name].${locale}.js`,
       chunkFilename: `[name].${locale}.js`,
