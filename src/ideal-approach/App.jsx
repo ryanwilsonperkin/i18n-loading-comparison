@@ -19,8 +19,9 @@ const router = createBrowserRouter([
     loader: async ({request}) => {
       const cookies = new Cookies(request.headers.cookie);
       const locale = cookies.get('locale') || 'en';
+      const speed = cookies.get('speed') || 'average';
       const [translations] = await Promise.all([
-        fetch(`/locales/navigation?locale=${locale}`).then(resp => resp.json()),
+        fetch(`/locales/navigation?locale=${locale}&speed=${speed}`).then(resp => resp.json()),
       ]);
       return {translations};
     },
@@ -33,7 +34,7 @@ const router = createBrowserRouter([
           const locale = cookies.get('locale') || 'en';
           const speed = cookies.get('speed') || 'average';
           const [translations, data] = await Promise.all([
-            fetch(`/locales/home?locale=${locale}`).then(resp => resp.json()),
+            fetch(`/locales/home?locale=${locale}&speed=${speed}`).then(resp => resp.json()),
             fetch(`/api/home?speed=${speed}`).then(resp => resp.json()),
           ])
           return {translations, data};
@@ -48,7 +49,7 @@ const router = createBrowserRouter([
           const speed = cookies.get('speed') || 'average';
           const [translations, data] = await Promise.all([
             fetch(`/locales/orders?locale=${locale}`).then(resp => resp.json()),
-            fetch(`/api/orders?speed=${speed}`).then(resp => resp.json()),
+            fetch(`/api/orders?speed=${speed}&speed=${speed}`).then(resp => resp.json()),
           ]);
           return {translations, data};
         },
@@ -61,7 +62,7 @@ const router = createBrowserRouter([
           const locale = cookies.get('locale') || 'en';
           const speed = cookies.get('speed') || 'average';
           const [translations, data] = await Promise.all([
-            fetch(`/locales/products?locale=${locale}`).then(resp => resp.json()),
+            fetch(`/locales/products?locale=${locale}&speed=${speed}`).then(resp => resp.json()),
             fetch(`/api/products?speed=${speed}`).then(resp => resp.json()),
           ]);
           return {translations, data};
